@@ -8,10 +8,11 @@
 //  ASSET LOAD
 //
 
+let font;
 let monsterAssets = {};
 
 function preload() {
-
+  font = loadFont("../assets/fonts/MochiyPopOne-Regular.ttf");
 }
 
 //
@@ -27,9 +28,22 @@ socket.on('connect', () => {
   // playerID = socket.id;
 });
 
+socket.on('playerInit', (data)=>{
+  player = data;
+});
+
+// socket.on('move') //no, just update loop for everyone, simpler?
+socket.on("update", (data)=>{
+  gardenState = data;
+})
+
 //
 //  VARIABLES
 //
+
+let player = {}; //stores the info about the player, not technically needed after joining garden
+let gardenState = {}; //this contains the information about the entire garden: players and environment
+let avatarSize; //the size to draw the avatars -- relative so initialized in set up
 
 //
 //  MAIN
@@ -44,22 +58,42 @@ function setup(){
   rectMode(CENTER);
   imageMode(CENTER);
   angleMode(RADIANS);
-  // textFont(font);
+  textFont(font);
   textAlign(CENTER, CENTER);
   strokeWeight(2);
+
+  avatarSize = width / 20;
 
 } 
 
 function draw(){
   background("#93a800");
-}
 
-//
-//  MOUSE FUNCTIONS
-//
+  //
+  // DISPLAYING AVATARS AND ENVIRONMENT
+  //
 
-// for clicking speed UI
-function mouseClicked(){
+  for (let [id, player] of Object.entries(gardenState.players)){
+    fill(player.color)
+    ellipse(player.pos.x, player.pos.y, avatarSize);
+  }
+
+  //
+  // USER CONTROLS
+  //
+  if (keyIsDown(87) || keyIsDown(UP_ARROW)){ //87 is the key code for "w"
+    socket.emit("move", "up");
+  }
+  if (keyIsDown(83) || keyIsDown(DOWN_ARROW)){ //83 is the key code for "s"
+    socket.emit("move", "down");
+  }
+  if (keyIsDown(65) || keyIsDown(LEFT_ARROW)){ //65 is the key code for "a"
+    socket.emit("move", "left");
+  }
+  if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)){ //68 is the key code for "d"
+    socket.emit("move", "right");
+  }
+ 
   
 }
 

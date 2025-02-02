@@ -10,14 +10,18 @@ An alternative attendance method.
 
 ### Garden Screen
 
-- [ ] Avatar WASD
+- [X] Avatar WASD
 - [ ] Avatar name
 - [ ] Avatar message
 - [ ] Avatar name/message toggle in proximity
 - [ ] Avatar interactions
+  - [ ] some sort of click thing? a shape that shoots out at the target? a like projectile?
 - [ ] Environment random pop up
 - [ ] Garden background
 - [ ] p5 sketch instances instead of pngs?
+- [ ] borders
+  - [ ] boundary code
+  - [ ] visual
 
 ### Client Screen
 
