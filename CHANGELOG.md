@@ -2,6 +2,12 @@
 
 ## v0.1
 
+### v0.1.3 *2/2/25 1.5 hrs*
+
+- new default font and font research on readme
+- started check in ui and events
+- random start pos based on default 1920x1080 garden res
+
 ### v0.1.2 *2/1/25 1 hr*
 
 - set up player info and gardenState object

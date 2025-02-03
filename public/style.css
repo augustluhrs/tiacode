@@ -1,24 +1,33 @@
+@font-face {
+  font-family: 'Lugrasimo';
+  src: url('assets/fonts/Lugrasimo.ttf') format('truetype');
+}
+
+
 body {
-  margin: 0px
+  margin: 0px;
+  font-family: "Lugrasimo";
+  /* font-size: 4rem; */
 }
 
 .inputs {
-  font-size: 150%;
-  font-family: "MochiyPopOne-Regular";
+  /* font-size: 150%; */
+  border-radius: 12px;
+  
 }
 
-.startButts {
-  background-color: black;
-  color: goldenrod;
-  font-size: 200%;
-  font-family: "MochiyPopOne-Regular";
+.butts {
+  background-color: rgb(77, 130, 4);
+  color: rgb(220, 150, 206);
+  /* font-size: 200%; */
+  font-family: "Lugrasimo";
   text-align: center;
   border-radius: 12px;
   transition-duration: 0.4s;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.startButts:hover {
-  background-color: goldenrod;
-  color: rgb(112,16,15);
+.butts:hover {
+  background-color: rgb(71, 55, 13);
+  color: rgb(77, 130, 4);
 }

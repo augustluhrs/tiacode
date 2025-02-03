@@ -23,8 +23,11 @@ let io = require('socket.io')(server);
 // GAME VARIABLES
 //
 
-// let players = {}; // holds all current players
-let gardenState = {players: {}}; // holds all info from the garden (including players), used for update
+let gardenState = { // holds all info from the garden (including players), used for update
+  players: {},
+  width: 1920,
+  height: 1080,
+}; 
 
 let moveSpeed = 5;
 
@@ -48,13 +51,26 @@ inputs.on('connection', (socket) => {
   gardenState.players[socket.id] = {
     name: "", 
     message: "",
-    pos: {x: 0, y: 0}, 
-    // color: {r: 0, g: 0, b: 0},
-    color: "#bb33bb",
-    avatar: {},
-    emotion: {},
+    pos: {x: -100, y: -100}, //to start off screen while player checks in 
+    colorPrimary: "#bb33bb",
+    colorSecondary: "#ffffff",
+    avatar: "",
+    emotion: {
+      file: null,
+      pos: {x: -100, y: -100}
+    },
   };
   socket.emit("playerInit", gardenState.players[socket.id]);
+
+  //receiving player input from checkin screen, sending to garden after
+  socket.on("checkIn", (data)=>{
+    gardenState.players[socket.id] = data;
+    gardenState.players[socket.id].pos.x = Math.floor(Math.random() * gardenState.width * .9);
+    gardenState.players[socket.id].pos.y = Math.floor(Math.random() * gardenState.height * .9);
+    //TODO emotion pos relative
+    console.log(`${data.name} has checked in at ${gardenState.players[socket.id].pos.x}, ${gardenState.players[socket.id].pos.y}`);
+    socket.emit("goToGarden");
+  })
 
   //listen for movement events emitted from user WASD or arrow keys
   socket.on('move', (direction)=>{
