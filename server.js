@@ -19,6 +19,36 @@ app.use(express.static('public'));
 //create socket connection
 let io = require('socket.io')(server);
 
+//for file system requests (used in emotions folder)
+const fs = require('fs');
+const path = require('path');
+app.get('/emotions', (req, res) => {
+  const folderPath = path.join(__dirname, 'public/assets/emotions');
+  console.log(folderPath);
+  fs.readdir(folderPath, (err, files) => {
+      if (err) {
+          return res.status(500).json({ error: 'Error reading directory' });
+      }
+
+      // Create an array of objects with name properties
+      const emotionObjects = files.map(file => ({ emotion: path.parse(file).name, file: file }));
+      res.json(emotionObjects);
+  });
+});
+app.get('/animals', (req, res) => {
+  const folderPath = path.join(__dirname, 'public/assets/animals');
+  console.log(folderPath);
+  fs.readdir(folderPath, (err, files) => {
+      if (err) {
+          return res.status(500).json({ error: 'Error reading directory' });
+      }
+
+      // Create an array of objects with name properties
+      const animalObjects = files.map(file => ({ animal: path.parse(file).name, file: file }));
+      res.json(animalObjects);
+  });
+});
+
 //
 // GAME VARIABLES
 //
@@ -54,8 +84,12 @@ inputs.on('connection', (socket) => {
     pos: {x: -100, y: -100}, //to start off screen while player checks in 
     colorPrimary: "#bb33bb",
     colorSecondary: "#ffffff",
-    avatar: "",
+    animal: {
+      // image: null,
+      file: null,
+    },
     emotion: {
+      // image: null,
       file: null,
       pos: {x: -100, y: -100}
     },
@@ -65,9 +99,13 @@ inputs.on('connection', (socket) => {
   //receiving player input from checkin screen, sending to garden after
   socket.on("checkIn", (data)=>{
     gardenState.players[socket.id] = data;
-    gardenState.players[socket.id].pos.x = Math.floor(Math.random() * gardenState.width * .9);
-    gardenState.players[socket.id].pos.y = Math.floor(Math.random() * gardenState.height * .9);
-    //TODO emotion pos relative
+    let randomX = Math.floor((Math.random() * gardenState.width * .8) + gardenState.width * .1);
+    let randomY = Math.floor((Math.random() * gardenState.height * .8) + gardenState.height * .1);
+    gardenState.players[socket.id].pos.x = randomX;
+    gardenState.players[socket.id].pos.y = randomY;
+    gardenState.players[socket.id].emotion.pos.x = randomX;
+    gardenState.players[socket.id].emotion.pos.y = randomY;
+    
     console.log(`${data.name} has checked in at ${gardenState.players[socket.id].pos.x}, ${gardenState.players[socket.id].pos.y}`);
     socket.emit("goToGarden");
   })

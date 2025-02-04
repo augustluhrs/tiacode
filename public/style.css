@@ -3,6 +3,11 @@
   src: url('assets/fonts/Lugrasimo.ttf') format('truetype');
 }
 
+html, body, a, button, input {
+  /* for custom cursor */
+  cursor: url('assets/icons/ca_cursor.png'), auto;
+}
+
 
 body {
   margin: 0px;
@@ -14,6 +19,10 @@ body {
   /* font-size: 150%; */
   border-radius: 12px;
   
+}
+
+.dropdowns {
+  font-family: "Lugrasimo";
 }
 
 .butts {

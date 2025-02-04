@@ -2,6 +2,18 @@
 
 ## v0.1
 
+### v0.1.4 *2/3/25 2.75hrs -- 6hrs running*
+
+- custom cursor
+- updated font on canvas and text size/stroke/colors
+- basic UI done
+- fancy new fs file loading for emotions and animals
+- emotion on garden
+- random animal, replacing ellipse
+- name above animal
+- shift reveals messages
+- misc format and style tweaks
+
 ### v0.1.3 *2/2/25 1.5 hrs*
 
 - new default font and font research on readme

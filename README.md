@@ -1,6 +1,6 @@
-# Tech in Action: Creative Code]
+# Tech in Action: Creative Code
 
-## Frolic Garden
+## Garden of ??? Delights
 
 A garden where avatars mingle amongst an environment made up of class-wide emotions.
 
@@ -12,12 +12,12 @@ An alternative attendance method.
 
 - [X] Avatar WASD
   - [ ] flip/rotate image to show direction
-- [ ] Avatar name
-- [ ] Avatar message
+- [X] Avatar name
+- [X] Avatar message
 - [ ] Avatar name/message toggle in proximity
 - [ ] Avatar interactions
   - [ ] some sort of click thing? a shape that shoots out at the target? a like projectile?
-- [ ] Environment random pop up
+- [X] Environment random pop up
 - [ ] Garden background
 - [ ] p5 sketch instances instead of pngs?
 - [ ] borders
@@ -26,23 +26,24 @@ An alternative attendance method.
 
 ### Client Screen
 
-- [ ] Name input
+- [X] Name input
 - [ ] Avatar selection
-  - [ ] random
+  - [X] random
   - [ ] self-portrait
   - [ ] animal
-- [ ] Color Picker for Avatar
-- [ ] Message
-  - [ ] input
-  - [ ] prompt
+- [X] Color Picker for Avatar
+- [X] Message
+  - [X] input
+  - [X] prompt
 - [ ] Emotion wheel selection
+  - [ ] drag select or dropdown? drag select would be insanity, maybe just color -- stroke instead of second? or for projectile...
 - [X] checkIn button
 
 ### Misc
 
 - [ ] add link to TIA main glitch site
 - [ ] nedb for saves?
-- [ ] default font
+- [X] default font
 
 ## Credits
 
